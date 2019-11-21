@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>gigs.in</title>
+    <%- include('../partials/bootstrap') %>
+</head>
+<body>
+    <%- include('../partials/navbar',{page : 'event'})%>
+    <div class="container">
+        <% if(errors && errors.length!==0) { %>
+            <br>
+            <br>
+            <div class="alert alert-danger alert-dismissible mt-5">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Error !</h4>
+                        <ul>
+                        <% for(let i=0;i<errors.length;i++) { %>
+                            <li><%= errors[i]%></li>
+                        <% } %>
+                        </ul>
+                        <hr>
+                        <p class="mb-0">Please correct the data to be sent</p>
+                    </div>
+            </div>
+        <% } %>
+        <% if(errors && errors.length!==0) { %>
+            <br>
+            <br>
+            <div class="alert alert-danger alert-dismissible mt-5">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Error !</h4>
+                        <ul>
+                        <% for(let i=0;i<errors.length;i++) { %>
+                            <li><%= errors[i]%></li>
+                        <% } %>
+                        </ul>
+                        <hr>
+                        <p class="mb-0">Please correct the data to be sent</p>
+                    </div>
+            </div>
+        <% } %>
+        <% if(errors.length===0) {%>
+            <br><br>
+        <% }%>
+        <div style="height: 500px;" class="row mt-5 border">
+            <div class="col-6">
+                <img src="https://previews.123rf.com/images/virinka/virinka1808/virinka180800003/107663885-cartoon-music-band-concept-music-character-design.jpg" height="498" width="100%">
+            </div>
+            <div class="col-6">
+                    <label for="profile" class="col-12 col-form-label"><h1>Add Event</h1></label>
+                    <form action="" method="POST" >
+                        <div class="row justify-content-between">
+                            <div class="input-group col-lg-12 mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                        <i class="fa fa-ticket-alt text-muted"></i>
+                                    </span>
+                                </div>
+                                <input id="name" type="text" name="name" placeholder="Name" class="form-control bg-white border-left-0 border-md" value="<%= values.name || "" %>">
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="input-group col-lg-12 mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                        <i class="fa fa-map-marked-alt text-muted"></i>
+                                    </span>
+                                </div>
+                                <input id="location" type="text" name="location" placeholder="Location" class="form-control bg-white border-left-0 border-md" value="<%= values.location || "" %>">
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="input-group col-lg-12 mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                        <i class="fa fa-users text-muted"></i>
+                                    </span>
+                                </div>
+                                <input id="capacity" type="number" name="capacity" placeholder="Capacity" class="form-control bg-white border-left-0 border-md" value="<%= values.capacity || "" %>">
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="input-group col-lg-12 mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                        <i class="fa fa-money-bill-wave text-muted"></i>
+                                    </span>
+                                </div>
+                                <input id="price" type="text" name="price" placeholder="Price" class="form-control bg-white border-left-0 border-md" value="<%= values.price || "" %>">
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="input-group col-lg-12 mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                        <i class="fa fa-calendar-alt text-muted"></i>
+                                    </span>
+                                </div>
+                                <input id="date" type="date" name="date" placeholder="Date" class="form-control bg-white border-left-0 border-md" value="<%= values.date || "" %>">
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="input-group col-lg-12 mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                        <i class="fa fa-folder-open text-muted"></i>
+                                    </span>
+                                </div>
+                                <input type="file" class="form-control" id="image" placeholder="Cover" name="image" accept="image/*" class="form-control bg-white border-left-0 border-md">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn mt-3 btn-primary btn-block">Update</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+</body>
+</html>

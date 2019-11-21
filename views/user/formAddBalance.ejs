@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>gigs.in</title>
+    <%- include('../partials/bootstrap') %>
+</head>
+<body>
+    <%- include('../partials/navbar',{page : 'profile'})%>
+    <div class="container">
+        <% if(errors && errors.length!==0) { %>
+            <br>
+            <br>
+            <div class="alert alert-danger alert-dismissible mt-5">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Error !</h4>
+                        <ul>
+                        <% for(let i=0;i<errors.length;i++) { %>
+                            <li><%= errors[i]%></li>
+                        <% } %>
+                        </ul>
+                        <hr>
+                        <p class="mb-0">Please correct the data to be sent</p>
+                    </div>
+            </div>
+        <% } %>
+        <% if(errors.length===0) {%>
+            <br><br>
+        <% }%>
+        <div style="height: 500px;" class="row mt-5 border">
+                <div class="col-6">
+                    <img src="https://previews.123rf.com/images/sanek13744/sanek137441701/sanek13744170100129/70257101-stacks-of-gold-coins-and-dollar-cash-vector-illustration-in-flat-design-on-white-background.jpg" height="498" width="100%">
+                </div>
+                <div class="col-6">
+                <div class="row justify-content-between">
+                    <label for="profile" class="col-12 col-form-label"><h1>Data</h1></label>
+                    <label for="id" class="col-6 col-form-label"><b>Id</b></label>
+                    <div class="col-6">
+                        <input type="text" class="form-control-plaintext" id="id" value="<%= user.id %>" readonly>
+                    </div>
+                    <label for="id" class=" col-6 col-form-label"><b>Name</b></label>
+                    <div class="col-6">
+                        <input type="text" class="form-control-plaintext" id="name" value="<%= user.fullname %>" readonly>
+                    </div>
+                    <label for="id" class=" col-6 col-form-label"><b>Balance</b></label>
+                    <div class="col-6">
+                        <input type="text" readonly class="form-control-plaintext" id="balance" value="<%= moneyFormat(user.balance) %>">
+                    </div>
+                    <label for="profile" class="col-12 col-form-label mt-5"><h1>Add Balance</h1></label>
+                    <form action="" method="POST" class="input-group col-lg-12 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-money-bill-wave text-muted"></i>
+                                </span>
+                            </div>
+                            <input id="balance" type="text" name="balance" placeholder="Balance" class="form-control bg-white border-left-0 border-md col-12">
+                            <button type="submit" class="btn mt-3 btn-primary btn-block">Top Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

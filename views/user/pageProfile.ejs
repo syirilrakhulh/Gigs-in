@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>gigs.in</title>
+    <%- include('../partials/bootstrap') %>
+</head>
+<body>
+    <%- include('../partials/navbar',{page : 'profile'})%>
+    <div class="container">
+        <% if(errors && errors.length!==0) { %>
+            <div class="alert alert-danger alert-dismissible mt-3">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Error !</h4>
+                        <ul>
+                        <% for(let i=0;i<errors.length;i++) { %>
+                            <li><%= errors[i]%></li>
+                        <% } %>
+                        </ul>
+                        <hr>
+                        <p class="mb-0">Please correct the data to be sent</p>
+                    </div>
+            </div>
+        <% } %>
+        <% if(errors.length===0) {%>
+            <br><br>
+        <% }%>
+        <div style="height: 500px;" class="row mt-5 border">
+                <div class="col-6">
+                    <img src="https://img.freepik.com/free-vector/people-shopping-with-credit-card_53876-43130.jpg?size=626&ext=jpg" height="498" width="100%">
+                </div>
+                <div class="col-6">
+                <div class="row justify-content-between">
+                    <label for="profile" class="col-12 col-form-label"><h1>Profile Account</h1></label>
+                    <label for="id" class="col-6 col-form-label"><b>Id</b></label>
+                    <div class="col-6">
+                        <input type="text" readonly class="form-control-plaintext" id="id" value="<%= user.id %>">
+                    </div>
+                    <label for="id" class=" col-6 col-form-label"><b>Name</b></label>
+                    <div class="col-6">
+                        <input type="text" readonly class="form-control-plaintext" id="name" value="<%= user.fullname %>">
+                    </div>
+                    <label for="id" class=" col-6 col-form-label"><b>Address</b></label>
+                    <div class="col-6">
+                        <input type="text" readonly class="form-control-plaintext" id="address" value="<%= user.address %>">
+                    </div>
+                    <label for="id" class=" col-6 col-form-label"><b>Phone</b></label>
+                    <div class="col-6">
+                        <input type="text" readonly class="form-control-plaintext" id="phone" value="<%= user.phone %>">
+                    </div>
+                    <label for="id" class=" col-6 col-form-label"><b>Email</b></label>
+                    <div class="col-6">
+                        <input type="text" readonly class="form-control-plaintext" id="email" value="<%= user.email %>">
+                    </div>
+                    <% if(user.role === 'Customer') {%>
+                        <label for="id" class=" col-6 col-form-label"><b>Balance</b></label>
+                        <div class="col-6">
+                            <input type="text" readonly class="form-control-plaintext" id="balance" value="<%= moneyFormat(user.balance) %>">
+                        </div>
+                    <% } %>
+                    <% if(user.role == 'Customer') {%>
+                        <div class="col-6 mt-3">
+                            <a class="btn btn-primary btn-block" href="/profile/add-balance" role="button">Add Balance</a>
+                        </div>
+                        <div class="col-6 mt-3">
+                            <a class="btn btn-primary btn-block" href="profile/pay" role="button">Pay Ticket</a>
+                        </div>
+                    <% } %>
+                    <% if(user.role === 'Admin') {%>
+                        <div class="col-6 mt-3">
+                            <a href="/events/add-event" class="btn btn-block btn-primary">Add Event</a>        
+                        </div>
+                    <% } %>
+                    <div class="col-6 mt-3">
+                        <a class="btn btn-primary btn-block" href="profile/edit" role="button">Edit Profile</a>
+                    </div>
+                    <div class="col-6 mt-3">
+                        <a class="btn btn-danger btn-block" href="/profile/delete" role="button">Remove Account</a>
+                    </div>
+                    <div class="col-6 mt-3">
+                        <a class="btn btn-danger btn-block" href="profile/logout" role="button">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

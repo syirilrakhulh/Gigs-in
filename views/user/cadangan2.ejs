@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>gigs.in</title>
+    <%- include('../partials/bootstrap') %>
+</head>
+<body>
+    <%- include('../partials/navbar',{page : 'register'})%>
+    <div class="container">
+    
+    <div class="container">
+        <% if(errors && errors.length!==0) { %>
+            <br>
+            <br>
+            <div class="alert alert-danger alert-dismissible mt-5">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Error !</h4>
+                        <ul>
+                        <% for(let i=0;i<errors.length;i++) { %>
+                            <li><%= errors[i]%></li>
+                        <% } %>
+                        </ul>
+                        <hr>
+                        <p class="mb-0">Please correct the data to be sent</p>
+                    </div>
+            </div>
+        <% } %>
+        <% if(errors.length!==0) {%>
+            <br>
+        <% } else {%>
+            <br><br><br>
+        <% } %>
+        <div class="row py-5 align-items-center">
+            <!-- For Demo Purpose -->
+            <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+                <img src="https://res.cloudinary.com/mhmd/image/upload/v1569543678/form_d9sh6m.svg" alt="" class="img-fluid mb-3 d-none d-md-block">
+                <h1>Login to an Account</h1>
+                <p class="font-italic text-muted mb-0">Let's check newest event in Gigs.in. Login now and get big deals!</a></p>
+            </div>
+    
+            <!-- Registeration Form -->
+            <div class="col-md-7 col-lg-6 ml-auto <%= errors.length !== 0 ? '' : 'mt-5'%>">
+                <form action="" method="POST">
+                    <div class="row">
+    
+                        <!-- Email Address -->
+                        <div class="input-group col-lg-12 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-envelope text-muted"></i>
+                                </span>
+                            </div>
+                            <input id="email" type="email" name="email" placeholder="Email Address" class="form-control bg-white border-left-0 border-md" value="<%= values.email || "" %>">
+                        </div>
+    
+                        <!-- Password -->
+                        <div class="input-group col-lg-12 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-lock text-muted"></i>
+                                </span>
+                            </div>
+                            <input id="password" type="password" name="password" placeholder="Password" class="form-control bg-white border-left-0 border-md" <%= values.password || "" %>>
+                        </div> 
+    
+                        <!-- Submit Button -->
+                        <div class="form-group col-lg-12 mx-auto mb-0">
+                            <button type="submit" class="btn mt-3 btn-primary btn-block">Log In</button>
+                            <!-- <a href="#" class="btn btn-primary btn-block py-2">
+                                <span class="font-weight-bold">Create your account</span>
+                            </a> -->
+                        </div>
+    
+                        <!-- Divider Text -->
+                        <div class="form-group col-lg-12 mx-auto d-flex align-items-center my-4">
+                            <div class="border-bottom w-100 ml-5"></div>
+                            <span class="px-2 small text-muted font-weight-bold text-muted">OR</span>
+                            <div class="border-bottom w-100 mr-5"></div>
+                        </div>
+    
+                        <!-- Already Registered -->
+                        <div class="text-center w-100">
+                            <p class="text-muted font-weight-bold">Not registered yet ? <a href="/register" class="text-primary ml-2">Register</a></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

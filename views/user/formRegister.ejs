@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>gigs.in</title>
+    <%- include('../partials/bootstrap') %>
+</head>
+<body>
+    <%- include('../partials/navbar',{page : 'register'})%>
+    <div class="container">
+        <% if(errors && errors.length!==0) { %>
+            <div class="alert alert-danger alert-dismissible mt-5">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Error !</h4>
+                        <ul>
+                        <% for(let i=0;i<errors.length;i++) { %>
+                            <li><%= errors[i]%></li>
+                        <% } %>
+                        </ul>
+                        <hr>
+                        <p class="mb-0">Please correct the data to be sent</p>
+                    </div>
+            </div>
+        <% } %>
+        <h1 class="mt-5" style="text-align: center;">
+            Register New Member
+        </h1>
+        <form action="" method="POST">
+            <div class="row mt-5">
+                <label class="col-sm-2 col-form-label" for="firstName">First Name</label>
+                <div class="col-4">
+                    <input type="text" class="form-control" id="firstName" placeholder="Enter first name" name="firstName" value="<%= values.firstName || "" %>">
+                </div>
+                <label class="col-sm-2 col-form-label" for="lastName">Last Name</label>
+                <div class="col-4">
+                    <input type="text" class="form-control" id="lastName" placeholder="Enter last name" name="lastName" value="<%= values.lastName || "" %>">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <label class="col-sm-2 col-form-label" for="phone">Phone</label>
+                <div class="col-4">
+                    <input type="text" class="form-control" id="phone" placeholder="Enter phone number" name="phone" value="<%= values.phone || "" %>">
+                </div>
+                <label class="col-sm-2 col-form-label" for="last_name">Email</label>
+                <div class="col">
+                    <label class="sr-only" for="email">Email</label>
+                    <div class="input-group mb-2">
+                        <div class="input-group-prepend">
+                        <div class="input-group-text">@</div>
+                        </div>
+                        <input type="text" class="form-control" id="email" placeholder="Enter email" name="email" value="<%= values.email || "" %>">
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <label class="col-sm-2 col-form-label" for="address">Address</label>
+                <div class="col-10">
+                    <textarea class="form-control" id="address" rows="3" name="address" placeholder="Enter address"></textarea>
+                </div>
+            </div>
+            <button type="submit" class="btn mt-3 btn-primary btn-block">Register Now</button>
+          </form>
+    </div>
+</body>
+</html>

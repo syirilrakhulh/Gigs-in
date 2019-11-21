@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>gigs.in</title>
+    <%- include('../partials/bootstrap') %>
+</head>
+<body>
+    <%- include('../partials/navbar',{page : 'event'})%>
+    <div class="container">
+        <% if(errors && errors.length!==0) { %>
+            <br>
+            <br>
+            <div class="alert alert-danger alert-dismissible mt-5">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Error !</h4>
+                        <ul>
+                        <% for(let i=0;i<errors.length;i++) { %>
+                            <li><%= errors[i]%></li>
+                        <% } %>
+                        </ul>
+                        <hr>
+                        <p class="mb-0">Please correct the data to be sent</p>
+                    </div>
+            </div>
+        <% } %>
+        <% if(errors.length===0) {%>
+            <br><br>
+        <% }%>
+        <div style="height: 500px;" class="row mt-5 border">
+                <div class="col-6">
+                    <img src="https://img.freepik.com/free-vector/illustration-characters-transacting-money_53876-37252.jpg?size=626&ext=jpg" height="498" width="100%">
+                </div>
+                <div class="col-6">
+                <div class="row justify-content-between">
+                    <label for="profile" class="col-12 col-form-label"><h1>Event Information</h1></label>
+                    <label for="id" class=" col-6 col-form-label"><b>Name</b></label>
+                    <div class="col-6">
+                        <input type="text" class="form-control-plaintext" id="name" value="<%= event.name %>" readonly>
+                    </div>
+                    <label for="location" class=" col-6 col-form-label"><b>Location</b></label>
+                    <div class="col-6">
+                        <input type="text" readonly class="form-control-plaintext" id="location" value="<%= event.location %>">
+                    </div>
+                    <label for="capacity" class=" col-6 col-form-label"><b>Capacity</b></label>
+                    <div class="col-6">
+                        <input type="text" readonly class="form-control-plaintext" id="capacity" value="<%= event.capacity %>">
+                    </div>
+                    <label for="price" class=" col-6 col-form-label"><b>Price</b></label>
+                    <div class="col-6">
+                        <input type="text" readonly class="form-control-plaintext" id="price" value="<%= moneyFormat(event.price) %>">
+                    </div>
+                    <label for="date" class=" col-6 col-form-label"><b>Date</b></label>
+                    <div class="col-6">
+                        <input type="text" readonly class="form-control-plaintext" id="date" value="<%= event.date %>">
+                    </div>
+                    <label for="profile" class="col-12 col-form-label mt-5"><h1>Buy Ticket</h1></label>
+                    <form action="" method="POST" class="input-group col-lg-12 mb-4">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                    <i class="fa fa-receipt text-muted"></i>
+                                </span>
+                            </div>
+                            <input id="quantity" type="number" name="quantity" placeholder="Quantity" class="form-control bg-white border-left-0 border-md col-12">
+                            <button type="submit" class="btn mt-3 btn-primary btn-block">Buy Now</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

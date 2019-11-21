@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>gigs.in</title>
+    <%- include('../partials/bootstrap') %>
+</head>
+<body>
+    <%- include('../partials/navbar',{page : 'profile'})%>
+    <div class="container">
+        <% if(errors && errors.length!==0) { %>
+            <br>
+            <br>
+            <div class="alert alert-danger alert-dismissible mt-5">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Error !</h4>
+                        <ul>
+                        <% for(let i=0;i<errors.length;i++) { %>
+                            <li><%= errors[i]%></li>
+                        <% } %>
+                        </ul>
+                        <hr>
+                        <p class="mb-0">Please correct the data to be sent</p>
+                    </div>
+            </div>
+        <% } %>
+        <% if(errors.length===0) {%>
+            <br><br>
+        <% }%>
+        <div style="height: 500px;" class="row mt-5 border">
+                <div class="col-6">
+                    <img src="https://img.freepik.com/free-vector/people-shopping-with-credit-card_53876-43130.jpg?size=626&ext=jpg" height="498" width="100%">
+                </div>
+                <div class="col-6">
+                    <label for="profile" class="col-12 col-form-label"><h1>Current Data</h1></label>
+                    <form action="" method="POST" >
+                        <div class="row justify-content-between">
+                            <div class="input-group col-lg-12 mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                        <i class="fa fa-user text-muted"></i>
+                                    </span>
+                                </div>
+                                <input id="firstName" type="text" name="firstName" placeholder="First Name" class="form-control bg-white border-left-0 border-md" value="<%= values.firstName || "" %>">
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="input-group col-lg-12 mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                        <i class="fa fa-user text-muted"></i>
+                                    </span>
+                                </div>
+                                <input id="lastName" type="text" name="lastName" placeholder="Last Name" class="form-control bg-white border-left-0 border-md" value="<%= values.lastName || "" %>">
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="input-group col-lg-12 mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                        <i class="fa fa-envelope text-muted"></i>
+                                    </span>
+                                </div>
+                                <input id="email" type="text" name="email" placeholder="Email" class="form-control bg-white border-left-0 border-md" value="<%= values.email || "" %>">
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="input-group col-lg-12 mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                        <i class="fa fa-phone-square text-muted"></i>
+                                    </span>
+                                </div>
+                                <select id="countryCode" name="countryCode" style="max-width: 80px" class="custom-select form-control bg-white border-left-0 border-md h-100 font-weight-bold text-muted">
+                                    <option value="+62">+62</option>
+                                </select>
+                                <input id="phone" type="tel" name="phone" placeholder="Phone Number" class="form-control bg-white border-md border-left-0 pl-3" value="<%= values.phone %>">
+                            </div>.
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="input-group col-lg-12 mb-4">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                        <i class="fa fa-map-pin text-muted"></i>
+                                    </span>
+                                    <textarea class="form-control" cols="100" rows="3" id="address" name="address" placeholder="Address"><%= values.address %></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn mt-3 btn-primary btn-block">Update Account</button>
+                    </form>        
+            </div>
+    </div>
+</body>
+</html>

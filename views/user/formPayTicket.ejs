@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>gigs.in</title>
+    <%- include('../partials/bootstrap') %>
+</head>
+<body>
+    <%- include('../partials/navbar',{page : 'profile'})%>
+    <div class="container">
+        <% if(errors && errors.length!==0) { %>
+            <br>
+            <br>
+            <div class="alert alert-danger alert-dismissible mt-5">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    <div class="alert alert-danger" role="alert">
+                        <h4 class="alert-heading">Error !</h4>
+                        <ul>
+                        <% for(let i=0;i<errors.length;i++) { %>
+                            <li><%= errors[i]%></li>
+                        <% } %>
+                        </ul>
+                        <hr>
+                        <p class="mb-0">Please correct the data to be sent</p>
+                    </div>
+            </div>
+        <% } %>
+        <% if(errors.length===0) {%>
+            <br><br>
+        <% }%>
+        <div style="height: 500px;" class="row mt-5 border">
+                <div class="col-6">
+                    <img src="https://previews.123rf.com/images/arcady31/arcady311709/arcady31170900006/85483082-cinema-ticket-vector-icon.jpg" height="498" width="100%">
+                </div>
+                <div class="col-6">
+                <div class="row justify-content-between input-group col-lg-12 mb-4">
+                    <% if(values.invoice !== undefined && errors.length === 0){%>
+                            <label for="ticket" class="col-12 col-form-label"><h1>Ticket Info</h1></label>
+                            <label for="name" class="col-6 col-form-label"><b>Customer Name</b></label>
+                            <div class="col-6">
+                                <input type="text" readonly class="form-control-plaintext" id="name" value="<%= values.User.firstName %> <%= values.User.lastName %>">
+                            </div>
+                            <label for="eventName" class=" col-6 col-form-label"><b>Event Name</b></label>
+                            <div class="col-6">
+                                <input type="text" readonly class="form-control-plaintext" id="eventName" value="<%= values.Event.name %>">
+                            </div>
+                            <label for="price" class=" col-6 col-form-label"><b>Price</b></label>
+                            <div class="col-6">
+                                <input type="text" readonly class="form-control-plaintext" id="price" value="<%= moneyFormat(values.Event.price)%>">
+                            </div>
+                            <label for="quantity" class=" col-6 col-form-label"><b>Quantity</b></label>
+                            <div class="col-6">
+                                <input type="text" readonly class="form-control-plaintext" id="quantity" value="<%= values.quantity %>">
+                            </div>
+                            <label for="total" class=" col-6 col-form-label"><b>Total</b></label>
+                            <div class="col-6">
+                                <input type="text" readonly class="form-control-plaintext" id="total" value="<%= moneyFormat(values.total) %>">
+                            </div>
+                            <label for="invoice" class=" col-6 col-form-label"><b>Invoice</b></label>
+                            <div class="col-6">
+                                <input type="text" readonly class="form-control-plaintext" id="total" value="<%=values.invoice %>">
+                            </div>
+                            <label for="pay" class="col-12 col-form-label"><h1>Pay Ticket</h1></label>
+                            <form action="/ticket/<%= values.id %>/pay" method="POST" class="input-group col-lg-12 mb-4">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                            <i class="fa fa-money-bill-wave text-muted"></i>
+                                        </span>
+                                    </div>
+                                    <input id="balance" type="text" name="balance" placeholder="Balance" class="form-control bg-white border-left-0 border-md">
+                                    <button type="submit" class="btn mt-3 btn-primary btn-block mt-3">Pay</button>
+                            </form>
+                    <% } else {%>
+                        <label for="profile" class="col-12 col-form-label"><h1>Profile Account</h1></label>
+                        <form action="" method="POST" class="input-group col-12 mb-4">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                        <i class="fa fa-barcode text-muted"></i>
+                                    </span>
+                                </div>
+                                <input id="invoice" type="text" name="invoice" placeholder="Invoice Code" class="form-control bg-white border-left-0 border-md">
+                                <button type="submit" class="btn mt-3 btn-primary col-12">Search</button>
+                        </form>
+                    <% } %>
+    </div>
+</body>
+</html>
